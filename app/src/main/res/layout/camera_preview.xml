@@ -1,33 +1,304 @@
-
-
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent" android:paddingLeft="0dp"
-android:paddingRight="0dp"
-android:paddingTop="0dp"
-android:paddingBottom="0dp" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cameraPreviewMainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:visibility="visible">
 
-<SurfaceView
-    android:id="@+id/surfaceView"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" />
+    <pixedar.com.superlapse.Dslr.PictureView
+        android:id="@+id/dslrView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
+
+    <pixedar.com.superlapse.Camera2.AutoFitTextureView
+        android:id="@+id/textureView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:visibility="visible" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/progress_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:textColor="@color/cardview_light_background" />
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light" />
 
-    <TextView
-        android:id="@+id/startTextView"
+    <LinearLayout
+        android:id="@+id/extra_modes_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="100dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/extra_modes_button0"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_baseline_filter_hdr_24px"
+                android:text="HDR" />
+
+            <Button
+                android:id="@+id/extra_modes_button1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_baseline_star_24px"
+                android:text="ASTRO" />
+
+            <Button
+                android:id="@+id/extra_modes_button2"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_day_to_nigh_icon"
+                android:text="DAY TO NIGHT" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="TAP TO START"
-        android:textColor="@android:color/background_dark"
-        android:textSize="36sp" />
+        android:gravity="start"
+        android:orientation="vertical">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/extraModesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            android:visibility="visible"
+            app:fabCustomSize="35dp"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_baseline_filter_none_24px" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/showExponsureOnPhotoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:clickable="true"
+            app:backgroundTint="@color/black"
+            android:visibility="gone"
+            app:fabCustomSize="35dp"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_baseline_visibility_24px" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="end"
+            android:orientation="vertical">
+
+
+            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+                android:layout_width="match_parent"
+                android:layout_height="213dp"
+                android:layout_marginTop="-15dp">
+
+                <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+                    android:id="@+id/camSettingsSeekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="213dp"
+                    android:max="34"
+                    android:progress="0"
+                    android:splitTrack="false"
+                    android:visibility="invisible"
+                    app:seekBarRotation="CW270" />
+
+                <!-- Rotation: CW90 or CW270 -->
+            </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+                <TextView
+                    android:id="@+id/camSettingsValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="11sp" />
+
+                <ImageView
+                    android:id="@+id/value_animation_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:contentDescription="TODO"
+                    android:src="@drawable/ic_animate_icon"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/focus_lock_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:contentDescription="TODO"
+                    android:src="@drawable/ic_baseline_lock_24px"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/apertureButton"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                android:visibility="gone"
+                app:fabCustomSize="35dp"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_camera_white_48px" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/hdrButton"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:fabCustomSize="35dp"
+                app:srcCompat="@drawable/ic_hdr_off_white_48px" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/shutterSpeedButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:fabCustomSize="35dp"
+                app:srcCompat="@drawable/ic_baseline_shutter_speed_24px" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/isoButton"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:fabCustomSize="35dp"
+                app:srcCompat="@drawable/ic_exposure_white_48px" />
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/startButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="3dp"
+                app:maxImageSize="50dp"
+                android:layout_marginTop="26dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="center"
+                app:fabCustomSize="60dp"
+                app:srcCompat="@drawable/ic_baseline_play_arrow_24px" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/focusButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                app:fabCustomSize="35dp"
+                app:srcCompat="@drawable/ic_focus" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/aspectRatioButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:fabCustomSize="35dp"
+                app:srcCompat="@drawable/ic_aspect_ratio_48px" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/autoModeButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:backgroundTint="@color/black"
+                app:fabCustomSize="35dp"
+                app:srcCompat="@drawable/ic_manual_mode" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

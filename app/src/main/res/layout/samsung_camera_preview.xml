@@ -1,0 +1,144 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cameraPreviewMainLayout"
+    android:layout_width="match_parent"
+    android:background="@color/black"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pixedar.com.superlapse.util.AutoFitTextureView
+            android:id="@+id/texture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center" />
+
+        <pixedar.com.superlapse.util.FaceRectView
+            android:id="@+id/face"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/progressValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="31dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="end"
+            android:orientation="vertical">
+
+
+            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+                android:layout_width="match_parent"
+                android:layout_height="213dp"
+                android:layout_marginTop="0dp">
+
+                <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+                    android:id="@+id/camSettingsSeekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="213dp"
+                    android:max="34"
+                    android:progress="0"
+                    android:splitTrack="false"
+                    android:visibility="invisible"
+                    app:seekBarRotation="CW270" />
+
+                <!-- Rotation: CW90 or CW270 -->
+            </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+            <TextView
+                android:id="@+id/camSettingsValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="9sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/hdrButton"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:backgroundTint="@color/colorAccent"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_hdr_off_white_48px" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/shutterSpeedButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_brightness_5_white_48px" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/isoButton"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_exposure_white_48px" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/startButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="26dp"
+                android:clickable="true"
+                app:backgroundTint="#262626"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_camera_white_48px" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/focusButton"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="26dp"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_focus_white_24px" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
